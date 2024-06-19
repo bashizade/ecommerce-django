@@ -2,10 +2,11 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from product.models import Product
+from main.models import MainModel
 
 
 # Create your models here.
-class Cart(models.Model):
+class Cart(MainModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
@@ -18,7 +19,7 @@ class Cart(models.Model):
         verbose_name_plural = 'Carts'
 
 
-class Order(models.Model):
+class Order(MainModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     number = models.IntegerField()
     address = models.CharField(max_length=255)
@@ -38,7 +39,7 @@ class Order(models.Model):
         verbose_name_plural = 'Orders'
 
 
-class OrderItem(models.Model):
+class OrderItem(MainModel):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()

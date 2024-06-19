@@ -1,8 +1,10 @@
 from django.db import models
 
+from main.models import MainModel
+
 
 # Create your models here.
-class Category(models.Model):
+class Category(MainModel):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     status = models.BooleanField(default=True)
@@ -15,7 +17,7 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
 
-class Comment(models.Model):
+class Comment(MainModel):
     name = models.CharField(max_length=255)
     email = models.EmailField()
     message = models.TextField()
@@ -28,12 +30,12 @@ class Comment(models.Model):
         verbose_name_plural = 'Comments'
 
 
-class ProductGallery(models.Model):
+class ProductGallery(MainModel):
     Product = models.ForeignKey('Product', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='')
 
 
-class Product(models.Model):
+class Product(MainModel):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=11, decimal_places=2)
     image = models.ImageField(upload_to='')
