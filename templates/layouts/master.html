@@ -8,5 +8,9 @@
 </head>
 <body>
     {% include 'layouts/header.html' %}
+    <div class="m-auto max-w-7xl my-2">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'js/alpine.js' %}" defer></script>
 </body>
 </html>
